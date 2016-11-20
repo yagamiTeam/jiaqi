@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.A0332R103Mapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    <id column="DTL_ID_NO" property="dtlIdNo" jdbcType="CHAR" />
+    <id column="ITT_PCPR_BRNO" property="ittPcprBrno" jdbcType="CHAR" />
+    <id column="MSGIDNO" property="msgidno" jdbcType="CHAR" />
+    <id column="MSGRP_ENTRST_DT" property="msgrpEntrstDt" jdbcType="TIMESTAMP" />
+    <id column="MSGRP_RCV_SND_IDCD" property="msgrpRcvSndIdcd" jdbcType="CHAR" />
+    <result column="RCV_PCPR_BRNO" property="rcvPcprBrno" jdbcType="CHAR" />
+    <result column="PY_PSN_NM" property="pyPsnNm" jdbcType="VARCHAR" />
+    <result column="PY_PSN_ACCNO" property="pyPsnAccno" jdbcType="VARCHAR" />
+    <result column="RCVPYMTPS_NM" property="rcvpymtpsNm" jdbcType="VARCHAR" />
+    <result column="RCVPYMTPS_ACCNO" property="rcvpymtpsAccno" jdbcType="VARCHAR" />
+    <result column="RMT_AMT" property="rmtAmt" jdbcType="DECIMAL" />
+    <result column="MSGRP_PCSST" property="msgrpPcsst" jdbcType="CHAR" />
+    <result column="RMT_AR_ID" property="rmtArId" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DTL_ID_NO, ITT_PCPR_BRNO, MSGIDNO, MSGRP_ENTRST_DT, MSGRP_RCV_SND_IDCD, RCV_PCPR_BRNO, 
+    PY_PSN_NM, PY_PSN_ACCNO, RCVPYMTPS_NM, RCVPYMTPS_ACCNO, RMT_AMT, MSGRP_PCSST, RMT_AR_ID
+  </sql>
+  
+  <select id="select_01_MicrDbt" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select * from micr_dbt_bsndtl_rgstbook
+  	where MSGRP_PCSST = '01' 
+  	and MSGRP_RCV_SND_IDCD = '01' 
+  	limit #{startRow}, #{offset}
+  </select>
+  
+  <update id="update_01_to_14_MicrDbt" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook">
+  	update micr_dbt_bsndtl_rgstbook
+  	set MSGRP_PCSST = '14'
+  	where MSGRP_PCSST = '01'
+  	and DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+    and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+    and MSGIDNO = #{msgidno,jdbcType=CHAR}
+    and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+    and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR} 
+  </update>
+  
+  <update id="update_14_to_02_MicrDbt" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook">
+  	update micr_dbt_bsndtl_rgstbook
+  	set MSGRP_PCSST = '02'
+  	where MSGRP_PCSST = '14'
+  	and DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+    and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+    and MSGIDNO = #{msgidno,jdbcType=CHAR}
+    and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+    and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR} 
+  </update>
+  
+  <update id="update_14_to_01_MicrDbt" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook">
+  	update micr_dbt_bsndtl_rgstbook
+  	set MSGRP_PCSST = '01'
+  	where MSGRP_PCSST = '14'
+  	and DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+    and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+    and MSGIDNO = #{msgidno,jdbcType=CHAR}
+    and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+    and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR} 
+  </update>
+  
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.SequenceMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Sequence" >
+    <id column="SEQ_KEY" property="seqKey" jdbcType="VARCHAR" />
+    <result column="SEQ_VALUE" property="seqValue" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_KEY, SEQ_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sequence
+    where SEQ_KEY = #{seqKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sequence
+    where SEQ_KEY = #{seqKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Sequence" >
+    insert into sequence (SEQ_KEY, SEQ_VALUE)
+    values (#{seqKey,jdbcType=VARCHAR}, #{seqValue,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Sequence" >
+    insert into sequence
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqKey != null" >
+        SEQ_KEY,
+      </if>
+      <if test="seqValue != null" >
+        SEQ_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqKey != null" >
+        #{seqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="seqValue != null" >
+        #{seqValue,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Sequence" >
+    update sequence
+    <set >
+      <if test="seqValue != null" >
+        SEQ_VALUE = #{seqValue,jdbcType=BIGINT},
+      </if>
+    </set>
+    where SEQ_KEY = #{seqKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Sequence" >
+    update sequence
+    set SEQ_VALUE = #{seqValue,jdbcType=BIGINT}
+    where SEQ_KEY = #{seqKey,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByMap" parameterType="java.util.Map">
+  	update sequence
+  	set SEQ_VALUE = #{newSeqValue}
+  	where SEQ_KEY = #{seqKey}
+  	and SEQ_VALUE = #{curSeqValue}
+  </update>
+</mapper>

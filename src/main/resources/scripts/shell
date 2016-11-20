@@ -1,0 +1,13 @@
+awk -F: '{print $1, $7}' /etc/passwd
+awk -F ':' '{print $1, $7}' /etc/passwd
+awk -F ':' '{print "BEGIN,TEST"} {print $1","$7}' /etc/passwd
+awk -F ':' 'BEGIN {print "BEGIN,TEST"} {print $1","$7} END {print "END,TEST"}' /etc/passwd
+awk -F ':' 'BEGIN {print "BEGIN\tTEST"} {print $1"\t"$7} END {print "END\tTEST"}' /etc/passwd
+
+ls -ltr | awk 'BEGIN {size=0; print "[start]size is ", size} {size=size+$5; print $0} END {print "[end]size is ", size/1024, "KB"}'
+
+ls -ltr | awk 'BEGIN {size=0; print "[start]size is ", size} {if($5 != 4096) {size=size+$5; print $0}} END {print "[end]size is ", size/1024, "KB"}'
+
+ls -ltr | awk '{size=size+$5} END {print size}'
+
+yesorno=`echo 20161111 | awk '{if($0 ~ "^[0-9]*$") print 1; else print 0}'`

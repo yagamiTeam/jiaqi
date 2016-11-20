@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="mybatis/mapper/Micr_Dbt_Bsndtl_RgstbookMapper.xml"/>
+		<mapper resource="mybatis/mapper/Py_Rte_TblMapper.xml"/>
+		<mapper resource="mybatis/mapper/Py_Pdar_TblMapper.xml"/>
+		<mapper resource="mybatis/mapper/Py_Rte_Brno_Rel_TblMapper.xml"/>
+		<mapper resource="mybatis/mapper/Pltfrm_Jrnl_TblMapper.xml"/>
+		<mapper resource="mybatis/mapper/SequenceMapper.xml"/>
+		<mapper resource="mybatis/mapper/A0332R103Mapper.xml"/>
+	</mappers>
+</configuration>

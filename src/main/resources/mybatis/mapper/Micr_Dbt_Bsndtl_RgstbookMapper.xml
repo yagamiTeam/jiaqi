@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.Micr_Dbt_Bsndtl_RgstbookMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    <id column="DTL_ID_NO" property="dtlIdNo" jdbcType="CHAR" />
+    <id column="ITT_PCPR_BRNO" property="ittPcprBrno" jdbcType="CHAR" />
+    <id column="MSGIDNO" property="msgidno" jdbcType="CHAR" />
+    <id column="MSGRP_ENTRST_DT" property="msgrpEntrstDt" jdbcType="TIMESTAMP" />
+    <id column="MSGRP_RCV_SND_IDCD" property="msgrpRcvSndIdcd" jdbcType="CHAR" />
+    <result column="RCV_PCPR_BRNO" property="rcvPcprBrno" jdbcType="CHAR" />
+    <result column="PY_PSN_NM" property="pyPsnNm" jdbcType="VARCHAR" />
+    <result column="PY_PSN_ACCNO" property="pyPsnAccno" jdbcType="VARCHAR" />
+    <result column="RCVPYMTPS_NM" property="rcvpymtpsNm" jdbcType="VARCHAR" />
+    <result column="RCVPYMTPS_ACCNO" property="rcvpymtpsAccno" jdbcType="VARCHAR" />
+    <result column="RMT_AMT" property="rmtAmt" jdbcType="DECIMAL" />
+    <result column="MSGRP_PCSST" property="msgrpPcsst" jdbcType="CHAR" />
+    <result column="RMT_AR_ID" property="rmtArId" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DTL_ID_NO, ITT_PCPR_BRNO, MSGIDNO, MSGRP_ENTRST_DT, MSGRP_RCV_SND_IDCD, RCV_PCPR_BRNO, 
+    PY_PSN_NM, PY_PSN_ACCNO, RCVPYMTPS_NM, RCVPYMTPS_ACCNO, RMT_AMT, MSGRP_PCSST, RMT_AR_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_RgstbookKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from micr_dbt_bsndtl_rgstbook
+    where DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+      and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+      and MSGIDNO = #{msgidno,jdbcType=CHAR}
+      and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+      and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_RgstbookKey" >
+    delete from micr_dbt_bsndtl_rgstbook
+    where DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+      and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+      and MSGIDNO = #{msgidno,jdbcType=CHAR}
+      and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+      and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    insert into micr_dbt_bsndtl_rgstbook (DTL_ID_NO, ITT_PCPR_BRNO, MSGIDNO, 
+      MSGRP_ENTRST_DT, MSGRP_RCV_SND_IDCD, RCV_PCPR_BRNO, 
+      PY_PSN_NM, PY_PSN_ACCNO, RCVPYMTPS_NM, 
+      RCVPYMTPS_ACCNO, RMT_AMT, MSGRP_PCSST, 
+      RMT_AR_ID)
+    values (#{dtlIdNo,jdbcType=CHAR}, #{ittPcprBrno,jdbcType=CHAR}, #{msgidno,jdbcType=CHAR}, 
+      #{msgrpEntrstDt,jdbcType=TIMESTAMP}, #{msgrpRcvSndIdcd,jdbcType=CHAR}, #{rcvPcprBrno,jdbcType=CHAR}, 
+      #{pyPsnNm,jdbcType=VARCHAR}, #{pyPsnAccno,jdbcType=VARCHAR}, #{rcvpymtpsNm,jdbcType=VARCHAR}, 
+      #{rcvpymtpsAccno,jdbcType=VARCHAR}, #{rmtAmt,jdbcType=DECIMAL}, #{msgrpPcsst,jdbcType=CHAR}, 
+      #{rmtArId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    insert into micr_dbt_bsndtl_rgstbook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dtlIdNo != null" >
+        DTL_ID_NO,
+      </if>
+      <if test="ittPcprBrno != null" >
+        ITT_PCPR_BRNO,
+      </if>
+      <if test="msgidno != null" >
+        MSGIDNO,
+      </if>
+      <if test="msgrpEntrstDt != null" >
+        MSGRP_ENTRST_DT,
+      </if>
+      <if test="msgrpRcvSndIdcd != null" >
+        MSGRP_RCV_SND_IDCD,
+      </if>
+      <if test="rcvPcprBrno != null" >
+        RCV_PCPR_BRNO,
+      </if>
+      <if test="pyPsnNm != null" >
+        PY_PSN_NM,
+      </if>
+      <if test="pyPsnAccno != null" >
+        PY_PSN_ACCNO,
+      </if>
+      <if test="rcvpymtpsNm != null" >
+        RCVPYMTPS_NM,
+      </if>
+      <if test="rcvpymtpsAccno != null" >
+        RCVPYMTPS_ACCNO,
+      </if>
+      <if test="rmtAmt != null" >
+        RMT_AMT,
+      </if>
+      <if test="msgrpPcsst != null" >
+        MSGRP_PCSST,
+      </if>
+      <if test="rmtArId != null" >
+        RMT_AR_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dtlIdNo != null" >
+        #{dtlIdNo,jdbcType=CHAR},
+      </if>
+      <if test="ittPcprBrno != null" >
+        #{ittPcprBrno,jdbcType=CHAR},
+      </if>
+      <if test="msgidno != null" >
+        #{msgidno,jdbcType=CHAR},
+      </if>
+      <if test="msgrpEntrstDt != null" >
+        #{msgrpEntrstDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgrpRcvSndIdcd != null" >
+        #{msgrpRcvSndIdcd,jdbcType=CHAR},
+      </if>
+      <if test="rcvPcprBrno != null" >
+        #{rcvPcprBrno,jdbcType=CHAR},
+      </if>
+      <if test="pyPsnNm != null" >
+        #{pyPsnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyPsnAccno != null" >
+        #{pyPsnAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpymtpsNm != null" >
+        #{rcvpymtpsNm,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpymtpsAccno != null" >
+        #{rcvpymtpsAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtAmt != null" >
+        #{rmtAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="msgrpPcsst != null" >
+        #{msgrpPcsst,jdbcType=CHAR},
+      </if>
+      <if test="rmtArId != null" >
+        #{rmtArId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    update micr_dbt_bsndtl_rgstbook
+    <set >
+      <if test="rcvPcprBrno != null" >
+        RCV_PCPR_BRNO = #{rcvPcprBrno,jdbcType=CHAR},
+      </if>
+      <if test="pyPsnNm != null" >
+        PY_PSN_NM = #{pyPsnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyPsnAccno != null" >
+        PY_PSN_ACCNO = #{pyPsnAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpymtpsNm != null" >
+        RCVPYMTPS_NM = #{rcvpymtpsNm,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpymtpsAccno != null" >
+        RCVPYMTPS_ACCNO = #{rcvpymtpsAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtAmt != null" >
+        RMT_AMT = #{rmtAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="msgrpPcsst != null" >
+        MSGRP_PCSST = #{msgrpPcsst,jdbcType=CHAR},
+      </if>
+      <if test="rmtArId != null" >
+        RMT_AR_ID = #{rmtArId,jdbcType=CHAR},
+      </if>
+    </set>
+    where DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+      and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+      and MSGIDNO = #{msgidno,jdbcType=CHAR}
+      and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+      and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Micr_Dbt_Bsndtl_Rgstbook" >
+    update micr_dbt_bsndtl_rgstbook
+    set RCV_PCPR_BRNO = #{rcvPcprBrno,jdbcType=CHAR},
+      PY_PSN_NM = #{pyPsnNm,jdbcType=VARCHAR},
+      PY_PSN_ACCNO = #{pyPsnAccno,jdbcType=VARCHAR},
+      RCVPYMTPS_NM = #{rcvpymtpsNm,jdbcType=VARCHAR},
+      RCVPYMTPS_ACCNO = #{rcvpymtpsAccno,jdbcType=VARCHAR},
+      RMT_AMT = #{rmtAmt,jdbcType=DECIMAL},
+      MSGRP_PCSST = #{msgrpPcsst,jdbcType=CHAR},
+      RMT_AR_ID = #{rmtArId,jdbcType=CHAR}
+    where DTL_ID_NO = #{dtlIdNo,jdbcType=CHAR}
+      and ITT_PCPR_BRNO = #{ittPcprBrno,jdbcType=CHAR}
+      and MSGIDNO = #{msgidno,jdbcType=CHAR}
+      and MSGRP_ENTRST_DT = #{msgrpEntrstDt,jdbcType=TIMESTAMP}
+      and MSGRP_RCV_SND_IDCD = #{msgrpRcvSndIdcd,jdbcType=CHAR}
+  </update>
+</mapper>

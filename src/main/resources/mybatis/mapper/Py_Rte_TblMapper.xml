@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.Py_Rte_TblMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl" >
+    <id column="PY_RTE_CD" property="pyRteCd" jdbcType="CHAR" />
+    <result column="EXG_WAY_CD" property="exgWayCd" jdbcType="CHAR" />
+    <result column="BSN_OPT_ST" property="bsnOptSt" jdbcType="CHAR" />
+    <result column="RMTNWYDT" property="rmtnwydt" jdbcType="TIMESTAMP" />
+    <result column="AMT_LWRLMT" property="amtLwrlmt" jdbcType="DECIMAL" />
+    <result column="RMT_AMT_UPLM" property="rmtAmtUplm" jdbcType="DECIMAL" />
+    <result column="HOL_IND" property="holInd" jdbcType="CHAR" />
+    <result column="HOL_RSTRC_AMT" property="holRstrcAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PY_RTE_CD, EXG_WAY_CD, BSN_OPT_ST, RMTNWYDT, AMT_LWRLMT, RMT_AMT_UPLM, HOL_IND, HOL_RSTRC_AMT
+  </sql>
+  <select id="select4List" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from py_rte_tbl
+    where limit #{startRow}, #{offset}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from py_rte_tbl
+    where PY_RTE_CD = #{pyRteCd,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from py_rte_tbl
+    where PY_RTE_CD = #{pyRteCd,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl" >
+    insert into py_rte_tbl (PY_RTE_CD, EXG_WAY_CD, BSN_OPT_ST, 
+      RMTNWYDT, AMT_LWRLMT, RMT_AMT_UPLM, 
+      HOL_IND, HOL_RSTRC_AMT)
+    values (#{pyRteCd,jdbcType=CHAR}, #{exgWayCd,jdbcType=CHAR}, #{bsnOptSt,jdbcType=CHAR}, 
+      #{rmtnwydt,jdbcType=TIMESTAMP}, #{amtLwrlmt,jdbcType=DECIMAL}, #{rmtAmtUplm,jdbcType=DECIMAL}, 
+      #{holInd,jdbcType=CHAR}, #{holRstrcAmt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl" >
+    insert into py_rte_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pyRteCd != null" >
+        PY_RTE_CD,
+      </if>
+      <if test="exgWayCd != null" >
+        EXG_WAY_CD,
+      </if>
+      <if test="bsnOptSt != null" >
+        BSN_OPT_ST,
+      </if>
+      <if test="rmtnwydt != null" >
+        RMTNWYDT,
+      </if>
+      <if test="amtLwrlmt != null" >
+        AMT_LWRLMT,
+      </if>
+      <if test="rmtAmtUplm != null" >
+        RMT_AMT_UPLM,
+      </if>
+      <if test="holInd != null" >
+        HOL_IND,
+      </if>
+      <if test="holRstrcAmt != null" >
+        HOL_RSTRC_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pyRteCd != null" >
+        #{pyRteCd,jdbcType=CHAR},
+      </if>
+      <if test="exgWayCd != null" >
+        #{exgWayCd,jdbcType=CHAR},
+      </if>
+      <if test="bsnOptSt != null" >
+        #{bsnOptSt,jdbcType=CHAR},
+      </if>
+      <if test="rmtnwydt != null" >
+        #{rmtnwydt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amtLwrlmt != null" >
+        #{amtLwrlmt,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtAmtUplm != null" >
+        #{rmtAmtUplm,jdbcType=DECIMAL},
+      </if>
+      <if test="holInd != null" >
+        #{holInd,jdbcType=CHAR},
+      </if>
+      <if test="holRstrcAmt != null" >
+        #{holRstrcAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl" >
+    update py_rte_tbl
+    <set >
+      <if test="exgWayCd != null" >
+        EXG_WAY_CD = #{exgWayCd,jdbcType=CHAR},
+      </if>
+      <if test="bsnOptSt != null" >
+        BSN_OPT_ST = #{bsnOptSt,jdbcType=CHAR},
+      </if>
+      <if test="rmtnwydt != null" >
+        RMTNWYDT = #{rmtnwydt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amtLwrlmt != null" >
+        AMT_LWRLMT = #{amtLwrlmt,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtAmtUplm != null" >
+        RMT_AMT_UPLM = #{rmtAmtUplm,jdbcType=DECIMAL},
+      </if>
+      <if test="holInd != null" >
+        HOL_IND = #{holInd,jdbcType=CHAR},
+      </if>
+      <if test="holRstrcAmt != null" >
+        HOL_RSTRC_AMT = #{holRstrcAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PY_RTE_CD = #{pyRteCd,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl" >
+    update py_rte_tbl
+    set EXG_WAY_CD = #{exgWayCd,jdbcType=CHAR},
+      BSN_OPT_ST = #{bsnOptSt,jdbcType=CHAR},
+      RMTNWYDT = #{rmtnwydt,jdbcType=TIMESTAMP},
+      AMT_LWRLMT = #{amtLwrlmt,jdbcType=DECIMAL},
+      RMT_AMT_UPLM = #{rmtAmtUplm,jdbcType=DECIMAL},
+      HOL_IND = #{holInd,jdbcType=CHAR},
+      HOL_RSTRC_AMT = #{holRstrcAmt,jdbcType=DECIMAL}
+    where PY_RTE_CD = #{pyRteCd,jdbcType=CHAR}
+  </update>
+</mapper>

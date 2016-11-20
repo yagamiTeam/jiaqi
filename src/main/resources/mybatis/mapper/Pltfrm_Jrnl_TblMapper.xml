@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.Pltfrm_Jrnl_TblMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_Tbl" >
+    <id column="OVRL_STTN_EV_TRCK_NO" property="ovrlSttnEvTrckNo" jdbcType="VARCHAR" />
+    <id column="WKDY_PRD" property="wkdyPrd" jdbcType="DATE" />
+    <result column="PYST_SVC_NM" property="pystSvcNm" jdbcType="VARCHAR" />
+    <result column="SYS_RECV_TIME" property="sysRecvTime" jdbcType="TIMESTAMP" />
+    <result column="SYS_RESP_TIME" property="sysRespTime" jdbcType="TIMESTAMP" />
+    <result column="SVC_RSP_ST" property="svcRspSt" jdbcType="VARCHAR" />
+    <result column="RMT_AR_ID" property="rmtArId" jdbcType="VARCHAR" />
+    <result column="PYST_DTBS_TM" property="pystDtbsTm" jdbcType="VARCHAR" />
+    <result column="CNST_JRNL_PCSST" property="cnstJrnlPcsst" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblWithBLOBs" extends="BaseResultMap" >
+    <result column="PYST_RQS_MSGBDY_CNTNT" property="pystRqsMsgbdyCntnt" jdbcType="LONGVARBINARY" />
+    <result column="PYST_RSP_MSGBDY_CNTNT" property="pystRspMsgbdyCntnt" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OVRL_STTN_EV_TRCK_NO, WKDY_PRD, PYST_SVC_NM, SYS_RECV_TIME, SYS_RESP_TIME, SVC_RSP_ST, 
+    RMT_AR_ID, PYST_DTBS_TM, CNST_JRNL_PCSST
+  </sql>
+  <sql id="Blob_Column_List" >
+    PYST_RQS_MSGBDY_CNTNT, PYST_RSP_MSGBDY_CNTNT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pltfrm_jrnl_tbl
+    where OVRL_STTN_EV_TRCK_NO = #{ovrlSttnEvTrckNo,jdbcType=VARCHAR}
+      and WKDY_PRD = #{wkdyPrd,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblKey" >
+    delete from pltfrm_jrnl_tbl
+    where OVRL_STTN_EV_TRCK_NO = #{ovrlSttnEvTrckNo,jdbcType=VARCHAR}
+      and WKDY_PRD = #{wkdyPrd,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblWithBLOBs" >
+    insert into pltfrm_jrnl_tbl (OVRL_STTN_EV_TRCK_NO, WKDY_PRD, PYST_SVC_NM, 
+      SYS_RECV_TIME, SYS_RESP_TIME, SVC_RSP_ST, 
+      RMT_AR_ID, PYST_DTBS_TM, CNST_JRNL_PCSST, 
+      PYST_RQS_MSGBDY_CNTNT, PYST_RSP_MSGBDY_CNTNT
+      )
+    values (#{ovrlSttnEvTrckNo,jdbcType=VARCHAR}, #{wkdyPrd,jdbcType=DATE}, #{pystSvcNm,jdbcType=VARCHAR}, 
+      #{sysRecvTime,jdbcType=TIMESTAMP}, #{sysRespTime,jdbcType=TIMESTAMP}, #{svcRspSt,jdbcType=VARCHAR}, 
+      #{rmtArId,jdbcType=VARCHAR}, #{pystDtbsTm,jdbcType=VARCHAR}, #{cnstJrnlPcsst,jdbcType=VARCHAR}, 
+      #{pystRqsMsgbdyCntnt,jdbcType=LONGVARBINARY}, #{pystRspMsgbdyCntnt,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblWithBLOBs" >
+    insert into pltfrm_jrnl_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ovrlSttnEvTrckNo != null" >
+        OVRL_STTN_EV_TRCK_NO,
+      </if>
+      <if test="wkdyPrd != null" >
+        WKDY_PRD,
+      </if>
+      <if test="pystSvcNm != null" >
+        PYST_SVC_NM,
+      </if>
+      <if test="sysRecvTime != null" >
+        SYS_RECV_TIME,
+      </if>
+      <if test="sysRespTime != null" >
+        SYS_RESP_TIME,
+      </if>
+      <if test="svcRspSt != null" >
+        SVC_RSP_ST,
+      </if>
+      <if test="rmtArId != null" >
+        RMT_AR_ID,
+      </if>
+      <if test="pystDtbsTm != null" >
+        PYST_DTBS_TM,
+      </if>
+      <if test="cnstJrnlPcsst != null" >
+        CNST_JRNL_PCSST,
+      </if>
+      <if test="pystRqsMsgbdyCntnt != null" >
+        PYST_RQS_MSGBDY_CNTNT,
+      </if>
+      <if test="pystRspMsgbdyCntnt != null" >
+        PYST_RSP_MSGBDY_CNTNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ovrlSttnEvTrckNo != null" >
+        #{ovrlSttnEvTrckNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wkdyPrd != null" >
+        #{wkdyPrd,jdbcType=DATE},
+      </if>
+      <if test="pystSvcNm != null" >
+        #{pystSvcNm,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRecvTime != null" >
+        #{sysRecvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRespTime != null" >
+        #{sysRespTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="svcRspSt != null" >
+        #{svcRspSt,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtArId != null" >
+        #{rmtArId,jdbcType=VARCHAR},
+      </if>
+      <if test="pystDtbsTm != null" >
+        #{pystDtbsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="cnstJrnlPcsst != null" >
+        #{cnstJrnlPcsst,jdbcType=VARCHAR},
+      </if>
+      <if test="pystRqsMsgbdyCntnt != null" >
+        #{pystRqsMsgbdyCntnt,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pystRspMsgbdyCntnt != null" >
+        #{pystRspMsgbdyCntnt,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblWithBLOBs" >
+    update pltfrm_jrnl_tbl
+    <set >
+      <if test="pystSvcNm != null" >
+        PYST_SVC_NM = #{pystSvcNm,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRecvTime != null" >
+        SYS_RECV_TIME = #{sysRecvTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysRespTime != null" >
+        SYS_RESP_TIME = #{sysRespTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="svcRspSt != null" >
+        SVC_RSP_ST = #{svcRspSt,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtArId != null" >
+        RMT_AR_ID = #{rmtArId,jdbcType=VARCHAR},
+      </if>
+      <if test="pystDtbsTm != null" >
+        PYST_DTBS_TM = #{pystDtbsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="cnstJrnlPcsst != null" >
+        CNST_JRNL_PCSST = #{cnstJrnlPcsst,jdbcType=VARCHAR},
+      </if>
+      <if test="pystRqsMsgbdyCntnt != null" >
+        PYST_RQS_MSGBDY_CNTNT = #{pystRqsMsgbdyCntnt,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pystRspMsgbdyCntnt != null" >
+        PYST_RSP_MSGBDY_CNTNT = #{pystRspMsgbdyCntnt,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where OVRL_STTN_EV_TRCK_NO = #{ovrlSttnEvTrckNo,jdbcType=VARCHAR}
+      and WKDY_PRD = #{wkdyPrd,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_TblWithBLOBs" >
+    update pltfrm_jrnl_tbl
+    set PYST_SVC_NM = #{pystSvcNm,jdbcType=VARCHAR},
+      SYS_RECV_TIME = #{sysRecvTime,jdbcType=TIMESTAMP},
+      SYS_RESP_TIME = #{sysRespTime,jdbcType=TIMESTAMP},
+      SVC_RSP_ST = #{svcRspSt,jdbcType=VARCHAR},
+      RMT_AR_ID = #{rmtArId,jdbcType=VARCHAR},
+      PYST_DTBS_TM = #{pystDtbsTm,jdbcType=VARCHAR},
+      CNST_JRNL_PCSST = #{cnstJrnlPcsst,jdbcType=VARCHAR},
+      PYST_RQS_MSGBDY_CNTNT = #{pystRqsMsgbdyCntnt,jdbcType=LONGVARBINARY},
+      PYST_RSP_MSGBDY_CNTNT = #{pystRspMsgbdyCntnt,jdbcType=LONGVARBINARY}
+    where OVRL_STTN_EV_TRCK_NO = #{ovrlSttnEvTrckNo,jdbcType=VARCHAR}
+      and WKDY_PRD = #{wkdyPrd,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Pltfrm_Jrnl_Tbl" >
+    update pltfrm_jrnl_tbl
+    set PYST_SVC_NM = #{pystSvcNm,jdbcType=VARCHAR},
+      SYS_RECV_TIME = #{sysRecvTime,jdbcType=TIMESTAMP},
+      SYS_RESP_TIME = #{sysRespTime,jdbcType=TIMESTAMP},
+      SVC_RSP_ST = #{svcRspSt,jdbcType=VARCHAR},
+      RMT_AR_ID = #{rmtArId,jdbcType=VARCHAR},
+      PYST_DTBS_TM = #{pystDtbsTm,jdbcType=VARCHAR},
+      CNST_JRNL_PCSST = #{cnstJrnlPcsst,jdbcType=VARCHAR}
+    where OVRL_STTN_EV_TRCK_NO = #{ovrlSttnEvTrckNo,jdbcType=VARCHAR}
+      and WKDY_PRD = #{wkdyPrd,jdbcType=DATE}
+  </update>
+</mapper>

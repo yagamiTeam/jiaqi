@@ -1,0 +1,102 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="Py_Rte_TblDBLoader" class="com.ant.jiaqi.cache.impl.Py_Rte_TblDBLoader"/>
+	<bean id="Py_Rte_Brno_Rel_TblDBLoader" class="com.ant.jiaqi.cache.impl.Py_Rte_Brno_Rel_TblDBLoader"/>
+	
+	<bean id="localCache" class="com.ant.jiaqi.cache.impl.LocalCache">
+		<property name="type" value="private"/>
+	</bean>
+	
+	<bean id="redisCache" class="com.ant.jiaqi.cache.impl.RedisCache">
+		<property name="type" value="public"/>
+		<property name="tblRedisMap">
+			<map>
+				<entry key="Py_Rte_Tbl" value="Py_Rte_TblRedis"></entry>
+				<entry key="Py_Rte_Brno_Rel_Tbl" value="Py_Rte_Brno_Rel_TblRedis"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="dbCache" class="com.ant.jiaqi.cache.impl.DBCache">
+		<property name="type" value="public"/>
+		<property name="dbLoaderMap">
+			<map>
+				<entry key="Py_Rte_Tbl" value-ref="Py_Rte_TblDBLoader"/>
+				<entry key="Py_Rte_Brno_Rel_Tbl" value-ref="Py_Rte_Brno_Rel_TblDBLoader"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="cacheService" class="com.ant.jiaqi.cache.impl.CacheServiceImpl">
+		<property name="tableMap">
+			<map>
+				<entry key="Py_Rte_Tbl">
+					<bean class="com.ant.jiaqi.cache.TableInfo">
+						<property name="objectClazz" value="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl"/>
+						<property name="primaryKeys">
+							<value>pyRteCd</value>
+						</property>
+						<property name="caches">
+							<value>dbCache,redisCache</value>
+						</property>
+					</bean>
+				</entry>
+				<entry key="Py_Rte_Brno_Rel_Tbl">
+					<bean class="com.ant.jiaqi.cache.TableInfo">
+						<property name="objectClazz" value="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl"/>
+						<property name="primaryKeys">
+							<value>pcpBrno,pyRteCd</value>
+						</property>
+						<property name="caches">
+							<value>dbCache,redisCache</value>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	<bean id="config" class="com.ant.jiaqi.cache.impl.Config">
+		<property name="configCaches">
+			<list>
+				<bean class="com.ant.jiaqi.cache.impl.ConfigCache">
+					<property name="id" value="local"/>
+					<property name="type" value="private"/>
+					<property name="clazzName" value="com.ant.jiaqi.cache.impl.LocalCache"/>
+				</bean>
+				<bean class="com.ant.jiaqi.cache.impl.ConfigCache">
+					<property name="id" value="redis"/>
+					<property name="type" value="public"/>
+					<property name="clazzName" value="com.ant.jiaqi.cache.impl.RedisCache"/>
+				</bean>
+				<bean class="com.ant.jiaqi.cache.impl.ConfigCache">
+					<property name="id" value="db"/>
+					<property name="type" value="public"/>
+					<property name="clazzName" value="com.ant.jiaqi.cache.impl.DBCache"/>
+				</bean>
+			</list>
+		</property>
+		
+		<property name="configTables">
+			<list>
+				<bean class="com.ant.jiaqi.cache.impl.ConfigTable">
+					<property name="id" value="Py_Rte_Tbl"/>
+					<property name="primaryKey" value="pyRteCd"/>
+					<property name="objectClazzName" value="com.ant.jiaqi.mybatis.model.Py_Rte_Tbl"/>
+					<property name="loaderClazzName" value="com.ant.jiaqi.cache.impl.Py_Rte_TblDBLoader"/>
+					<property name="location" value="db,redis"/>
+					<property name="redisCacheName" value="Py_Rte_Tbl_Redis"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="linkedBlockingQueue" class="java.util.concurrent.LinkedBlockingQueue">
+    	<constructor-arg value="10"/>
+    </bean>
+    
+    <bean id="threadPoolExecutor" class="java.util.concurrent.ThreadPoolExecutor">
+    	<constructor-arg value="10"/>
+    	<constructor-arg value="20"/>
+    	<constructor-arg value="5000"/>
+    	<constructor-arg>
+    		<value>MILLISECONDS</value>
+    	</constructor-arg>
+    	<constructor-arg ref="linkedBlockingQueue"/>
+    </bean>
+    
+    <bean id="scanDos_A0332R103" class="com.ant.jiaqi.scan.impl.ScanDosA0332R103"/>
+	<bean id="scanHandler_A0332R103" class="com.ant.jiaqi.scan.impl.ScanHandlerA0332R103"/>
+	
+	<bean id="scanStrategy_A0332R103" class="com.ant.jiaqi.scan.impl.ScanStrategyImpl">
+		<property name="scanDos" ref="scanDos_A0332R103"/>
+		<property name="scanCount">
+			<value>100</value>
+		</property>
+	</bean>
+	
+	<bean id="ScanService_A0332R103" class="com.ant.jiaqi.scan.impl.ScanServiceImpl">
+		<property name="id" value="A0332R103_Scan"/>
+		<property name="threadPoolExecutor" ref="threadPoolExecutor"/>
+		<property name="scanStrategy" ref="scanStrategy_A0332R103"/>
+		<property name="scanHandler" ref="scanHandler_A0332R103"/>
+		<property name="scanDos" ref="scanDos_A0332R103"/>
+	</bean> 
+</beans>

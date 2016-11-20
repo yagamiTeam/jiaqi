@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.Py_Rte_Brno_Rel_TblMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl" >
+    <id column="PCP_BRNO" property="pcpBrno" jdbcType="VARCHAR" />
+    <id column="PY_RTE_CD" property="pyRteCd" jdbcType="VARCHAR" />
+    <result column="PCP_FULLNM" property="pcpFullnm" jdbcType="VARCHAR" />
+    <result column="BLNG_DRC_PCPR_BRNO" property="blngDrcPcprBrno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PCP_BRNO, PY_RTE_CD, PCP_FULLNM, BLNG_DRC_PCPR_BRNO
+  </sql>
+  <select id="select4List" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from py_rte_brno_rel_tbl
+    where limit #{startRow}, #{offset}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_TblKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from py_rte_brno_rel_tbl
+    where PCP_BRNO = #{pcpBrno,jdbcType=VARCHAR}
+      and PY_RTE_CD = #{pyRteCd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_TblKey" >
+    delete from py_rte_brno_rel_tbl
+    where PCP_BRNO = #{pcpBrno,jdbcType=VARCHAR}
+      and PY_RTE_CD = #{pyRteCd,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl" >
+    insert into py_rte_brno_rel_tbl (PCP_BRNO, PY_RTE_CD, PCP_FULLNM, 
+      BLNG_DRC_PCPR_BRNO)
+    values (#{pcpBrno,jdbcType=VARCHAR}, #{pyRteCd,jdbcType=VARCHAR}, #{pcpFullnm,jdbcType=VARCHAR}, 
+      #{blngDrcPcprBrno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl" >
+    insert into py_rte_brno_rel_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pcpBrno != null" >
+        PCP_BRNO,
+      </if>
+      <if test="pyRteCd != null" >
+        PY_RTE_CD,
+      </if>
+      <if test="pcpFullnm != null" >
+        PCP_FULLNM,
+      </if>
+      <if test="blngDrcPcprBrno != null" >
+        BLNG_DRC_PCPR_BRNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pcpBrno != null" >
+        #{pcpBrno,jdbcType=VARCHAR},
+      </if>
+      <if test="pyRteCd != null" >
+        #{pyRteCd,jdbcType=VARCHAR},
+      </if>
+      <if test="pcpFullnm != null" >
+        #{pcpFullnm,jdbcType=VARCHAR},
+      </if>
+      <if test="blngDrcPcprBrno != null" >
+        #{blngDrcPcprBrno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl" >
+    update py_rte_brno_rel_tbl
+    <set >
+      <if test="pcpFullnm != null" >
+        PCP_FULLNM = #{pcpFullnm,jdbcType=VARCHAR},
+      </if>
+      <if test="blngDrcPcprBrno != null" >
+        BLNG_DRC_PCPR_BRNO = #{blngDrcPcprBrno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PCP_BRNO = #{pcpBrno,jdbcType=VARCHAR}
+      and PY_RTE_CD = #{pyRteCd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Py_Rte_Brno_Rel_Tbl" >
+    update py_rte_brno_rel_tbl
+    set PCP_FULLNM = #{pcpFullnm,jdbcType=VARCHAR},
+      BLNG_DRC_PCPR_BRNO = #{blngDrcPcprBrno,jdbcType=VARCHAR}
+    where PCP_BRNO = #{pcpBrno,jdbcType=VARCHAR}
+      and PY_RTE_CD = #{pyRteCd,jdbcType=VARCHAR}
+  </update>
+</mapper>

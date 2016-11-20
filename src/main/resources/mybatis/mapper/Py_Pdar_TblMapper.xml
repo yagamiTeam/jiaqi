@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ant.jiaqi.mybatis.dao.Py_Pdar_TblMapper" >
+  <resultMap id="BaseResultMap" type="com.ant.jiaqi.mybatis.model.Py_Pdar_Tbl" >
+    <id column="RMT_AR_ID" property="rmtArId" jdbcType="CHAR" />
+    <result column="PY_PSN_NM" property="pyPsnNm" jdbcType="VARCHAR" />
+    <result column="PY_PSN_ACCNO" property="pyPsnAccno" jdbcType="VARCHAR" />
+    <result column="RMT_AMT" property="rmtAmt" jdbcType="DECIMAL" />
+    <result column="WKDY_PRD" property="wkdyPrd" jdbcType="DATE" />
+    <result column="EXG_WAY_CD" property="exgWayCd" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RMT_AR_ID, PY_PSN_NM, PY_PSN_ACCNO, RMT_AMT, WKDY_PRD, EXG_WAY_CD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from py_pdar_tbl
+    where RMT_AR_ID = #{rmtArId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from py_pdar_tbl
+    where RMT_AR_ID = #{rmtArId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ant.jiaqi.mybatis.model.Py_Pdar_Tbl" >
+    insert into py_pdar_tbl (RMT_AR_ID, PY_PSN_NM, PY_PSN_ACCNO, 
+      RMT_AMT, WKDY_PRD, EXG_WAY_CD
+      )
+    values (#{rmtArId,jdbcType=CHAR}, #{pyPsnNm,jdbcType=VARCHAR}, #{pyPsnAccno,jdbcType=VARCHAR}, 
+      #{rmtAmt,jdbcType=DECIMAL}, #{wkdyPrd,jdbcType=DATE}, #{exgWayCd,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Pdar_Tbl" >
+    insert into py_pdar_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rmtArId != null" >
+        RMT_AR_ID,
+      </if>
+      <if test="pyPsnNm != null" >
+        PY_PSN_NM,
+      </if>
+      <if test="pyPsnAccno != null" >
+        PY_PSN_ACCNO,
+      </if>
+      <if test="rmtAmt != null" >
+        RMT_AMT,
+      </if>
+      <if test="wkdyPrd != null" >
+        WKDY_PRD,
+      </if>
+      <if test="exgWayCd != null" >
+        EXG_WAY_CD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rmtArId != null" >
+        #{rmtArId,jdbcType=CHAR},
+      </if>
+      <if test="pyPsnNm != null" >
+        #{pyPsnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyPsnAccno != null" >
+        #{pyPsnAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtAmt != null" >
+        #{rmtAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="wkdyPrd != null" >
+        #{wkdyPrd,jdbcType=DATE},
+      </if>
+      <if test="exgWayCd != null" >
+        #{exgWayCd,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ant.jiaqi.mybatis.model.Py_Pdar_Tbl" >
+    update py_pdar_tbl
+    <set >
+      <if test="pyPsnNm != null" >
+        PY_PSN_NM = #{pyPsnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyPsnAccno != null" >
+        PY_PSN_ACCNO = #{pyPsnAccno,jdbcType=VARCHAR},
+      </if>
+      <if test="rmtAmt != null" >
+        RMT_AMT = #{rmtAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="wkdyPrd != null" >
+        WKDY_PRD = #{wkdyPrd,jdbcType=DATE},
+      </if>
+      <if test="exgWayCd != null" >
+        EXG_WAY_CD = #{exgWayCd,jdbcType=CHAR},
+      </if>
+    </set>
+    where RMT_AR_ID = #{rmtArId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ant.jiaqi.mybatis.model.Py_Pdar_Tbl" >
+    update py_pdar_tbl
+    set PY_PSN_NM = #{pyPsnNm,jdbcType=VARCHAR},
+      PY_PSN_ACCNO = #{pyPsnAccno,jdbcType=VARCHAR},
+      RMT_AMT = #{rmtAmt,jdbcType=DECIMAL},
+      WKDY_PRD = #{wkdyPrd,jdbcType=DATE},
+      EXG_WAY_CD = #{exgWayCd,jdbcType=CHAR}
+    where RMT_AR_ID = #{rmtArId,jdbcType=CHAR}
+  </update>
+</mapper>

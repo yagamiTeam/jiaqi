@@ -1,0 +1,18 @@
+========================================linux========================================
+
+--------------------home--------------------
+curl -X POST -H "Content-Type:application/json" -d '{"pyPsnNm":"Âí²Ó", "pyPsnAccno":"0123456789", "rmtAmt":"100000", "wkdyPrd":"2016-11-11"}' http://192.168.1.3:8080/jiaqi/home
+
+
+curl -X GET "http://192.168.1.4:8080/jiaqi/A0332R301?userId=0&rmtAmt=1000&wkdyPrd=2016-11-11"
+curl -X POST -H "Content-Type:application/json" -d '{"pyPsnAccno":"0123456789", "rcvpymtpsAccno":"9876543210"}' http://192.168.1.4:8080/jiaqi/A0332R301
+curl -X POST -H "Content-Type:application/json" -d '{"pyPsnAccno":"0123456789", "rcvpymtpsAccno":"9876543210"}' http://192.168.1.4:8080/jiaqi/home
+curl -X POST -H "Content-Type:application/json" -d '{"name":"yagami"}' http://192.168.1.4:8080/springmvc/test
+curl -X POST -H "Content-Type:application/json" -d '{"name":"yagami"}' http://192.168.1.4:8080/icbms/test?token=1
+
+windows
+curl -X GET "http://192.168.1.4:8080/jiaqi/A0332R301?userId=0&rmtAmt=1000"
+
+curl -X POST -H "Content-Type:application/json" -d "{\"pyPsnAccno\":\"0123456789\", \"rcvpymtpsAccno\":\"9876543210\"}" http://localhost:8080/jiaqi/A0332R301
+curl -X POST -H "Content-Type:application/json" -d "{\"pyPsnAccno\":\"0123456789\", \"rcvpymtpsAccno\":\"9876543210\"}" http://localhost:8080/icbms/A0332R301?token=1
+
